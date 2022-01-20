@@ -4,6 +4,10 @@ This customization is intended to show how to enable the bypass ability for DBA 
 
 **This works in AWC 5.2 and has not yet been testing with newer versions. It should work in newer versions.**
 
+## How it will look
+![image](https://user-images.githubusercontent.com/12979360/150428823-3d1098ba-759a-488f-8f29-9004ad0b91d6.png)
+
+
 ## Setting it up
 First, you will need to configure a new module in your Teamcenter AWC system if you do not already have one. **This is not covered here.**
 
@@ -127,3 +131,6 @@ Now just add our property we want (fnd0bypassflag):
             } ]
         } ]
 ```
+
+## IMPORTANT NOTE
+Since we adjust an out of the box javascript file, it will revert the changes on any patches or upgrades. Make sure to adjust the javascript file again if you plan to do that.
