@@ -1,0 +1,63 @@
+{
+    "commands": {
+        "customBtnEnableDBABypassCommand": {
+            "iconId": "cmdBypassDisabled",
+            "title": "Bypass Disabled"
+        },
+        "customBtnDisableDBABypassCommand": {
+            "iconId": "cmdBypassEnabled",
+            "title": "Bypass Enabled"
+        }
+    },
+    "commandHandlers": {
+        "customEnableBypassHandler": {
+            "id": "customBtnEnableDBABypassCommand",
+            "action": "setBypassFlag",
+            "activeWhen": true,
+            "visibleWhen": {
+                "condition": "conditions.canToggleEnableBypass"
+            }
+        },
+        "customDisableBypassHandler": {
+            "id": "customBtnDisableDBABypassCommand",
+            "action": "setBypassFlag",
+            "activeWhen": true,
+            "visibleWhen": {
+                "condition": "conditions.canToggleDisableBypass"
+            }
+        }
+    },
+    "commandPlacements": {
+        "customEnableBypassBtn": {
+            "id": "customBtnEnableDBABypassCommand",
+            "uiAnchor": "aw_globalNavigationbar",
+            "priority": 125
+        },
+        "customDisableBypassBtn": {
+            "id": "customBtnDisableDBABypassCommand",
+            "uiAnchor": "aw_globalNavigationbar",
+            "priority": 125
+        }
+    },
+    "conditions": {
+		"canToggleEnableBypass":{
+			"expression": "ctx.userSession.props.fnd0bypassflag.dbValue === false && ctx.userSession.props.group_name.dbValue === 'dba' && ctx.userSession.props.role_name.dbValue === 'DBA'"
+		},
+		"canToggleDisableBypass":{
+			"expression": "ctx.userSession.props.fnd0bypassflag.dbValue === true && ctx.userSession.props.group_name.dbValue === 'dba' && ctx.userSession.props.role_name.dbValue === 'DBA'"
+		}
+    },
+    "actions": {
+        "setBypassFlag": {
+            "actionType": "TcSoaService",
+            "serviceName": "Core-2007-12-Session",
+            "method": "setUserSessionState",
+            "inputData": {
+                "pairs": [{
+                    "name": "fnd0bypassflag",
+                    "value": "{{ctx.userSession.props.fnd0bypassflag.dbValue ? '0' : '1'}}"
+                }]
+            }
+        }
+    }
+}
