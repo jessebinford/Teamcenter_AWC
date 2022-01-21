@@ -1,0 +1,44 @@
+{
+    "commands": {
+        "showSyslogPanelCommand": {
+            "iconId": "cmdLogging",
+            "title": "Syslog Info"
+        }
+    },
+    "commandHandlers": {
+        "ShowSyslogPanelHandler": {
+            "id": "showSyslogPanelCommand",
+            "action": "displaySyslogPanel",
+            "activeWhen": true,
+            "visibleWhen": {
+                "condition": "conditions.true"
+            }
+        }
+    },
+    "commandPlacements": {
+        "ShowSyslogPanelPlacement": {
+            "id": "showSyslogPanelCommand",
+            "uiAnchor": "aw_globalToolbar",
+            "priority": 7,
+            "parentGroupId": "Awp0ChangeTheme"
+        }
+    },
+    "actions": {
+		"displaySyslogPanel": {
+            "actionType": "JSFunction",
+            "method": "show",
+            "inputData": {
+                "data": {
+                    "declView": "SyslogPanel",
+                    "locals": {
+                        "caption": "Syslog Information"
+                    }
+                }
+            },
+            "outputData": {
+                "popupId": "id"
+            },
+            "deps": "js/popupService"
+        }
+    }
+}

@@ -1,0 +1,122 @@
+{
+    "schemaVersion": "1.0.0",
+    "imports": [
+        "js/aw-panel-body.directive",
+        "js/aw-panel-footer.directive",
+        "js/aw-button.directive",
+        "js/aw-popup2.directive",
+        "js/aw-textarea.directive",
+        "js/aw-label.directive"
+    ],
+    "actions": {
+        "closePopupWindow": {
+            "actionType": "JSFunction",
+            "method": "hide",
+            "inputData": {
+                "popupId": "{{data.popupId}}",
+                "targetEvent": "{{$event}}"
+            },
+            "deps": "js/popupService"
+        },
+		"getUserSessionDetail": {
+			"actionType": "TcSoaService",
+			"serviceName": "Core-2007-01-Session",
+			"method": "getTCSessionInfo",
+			"inputData": {
+			},
+            "outputData": {
+                "syslogFileName.uiValue": "extraInfo.syslogFile",
+                "serverSessionInfo.uiValue": "extraInfo.TcServerID"
+            },
+            "events": {
+                "success": [
+					{
+						"name": "getSyslogContent"
+					}
+				]
+            }
+		},
+        "loadSyslogFileContent": {
+            "actionType": "TcSoaService",
+            "serviceName": "Internal-DebugMonitor-2011-06-DebugLogging",
+            "method": "getSyslogFile",
+            "inputData":
+            {
+                "size": 1500000
+            },
+            "outputData": {
+                "syslogDataContent.dbValue": "out"
+            }
+        }
+    },
+    "onEvent": [
+        {
+            "eventId": "aw.closePopup",
+            "action": "closePopupWindow"
+        },
+		{
+			"eventId": "getSyslogContent",
+			"action": "loadSyslogFileContent"
+		}
+    ],
+    "data": {
+        "syslogFileName": {
+            "displayName": "File Name",
+            "type": "STRING",
+            "isRequired": "false",
+            "isEditable": "false",
+            "dbValue": "",
+            "dispValue": "",
+            "uiValue": "loading..."
+        },
+        "serverSessionInfo": {
+            "displayName": "Session Info",
+            "type": "STRING",
+            "isRequired": "false",
+            "isEditable": "false",
+            "dbValue": "",
+            "dispValue": "",
+            "uiValue": "loading..."
+        },
+        "currentUsernameValue": {
+            "displayName": "User ID",
+            "type": "STRING",
+            "isRequired": "false",
+            "isEditable": "false",
+            "dbValue": "",
+            "dispValue": "",
+            "uiValue": "{{ctx.userSession.props.user_id.dbValue}}"
+        },
+        "currentGroupValue": {
+            "displayName": "Group",
+            "type": "STRING",
+            "isRequired": "false",
+            "isEditable": "false",
+            "dbValue": "",
+            "dispValue": "",
+            "uiValue": "{{ctx.userSession.props.group_name.dbValue}}"
+        },
+        "currentRoleValue": {
+            "displayName": "Role",
+            "type": "STRING",
+            "isRequired": "false",
+            "isEditable": "false",
+            "dbValue": "",
+            "dispValue": "",
+            "uiValue": "{{ctx.userSession.props.role_name.dbValue}}"
+        },
+        "syslogDataContent": {
+            "displayName": "Syslog Contents",
+            "type": "STRING",
+            "isRequired": "false",
+            "isEditable": "true",
+            "dispValue": "",
+            "dbValue": "",
+            "uiValue": "loading...",
+            "numberOfLines": 5
+        }
+    },
+	"lifecycleHooks": {
+        "onInit": "getUserSessionDetail"
+    }
+}
