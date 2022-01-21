@@ -24,17 +24,17 @@
 			"method": "getTCSessionInfo",
 			"inputData": {
 			},
-            "outputData": {
-                "syslogFileName.uiValue": "extraInfo.syslogFile",
-                "serverSessionInfo.uiValue": "extraInfo.TcServerID"
-            },
-            "events": {
-                "success": [
+			"outputData": {
+				"syslogFileName.uiValue": "extraInfo.syslogFile",
+				"serverSessionInfo.uiValue": "extraInfo.TcServerID"
+			},
+			"events": {
+				"success": [
 					{
-						"name": "getSyslogContent"
+					"name": "getSyslogContent"
 					}
 				]
-            }
+			}
 		},
         "loadSyslogFileContent": {
             "actionType": "TcSoaService",
@@ -50,15 +50,15 @@
         }
     },
     "onEvent": [
-        {
-            "eventId": "aw.closePopup",
-            "action": "closePopupWindow"
-        },
+		{
+			"eventId": "aw.closePopup",
+			"action": "closePopupWindow"
+		},
 		{
 			"eventId": "getSyslogContent",
 			"action": "loadSyslogFileContent"
 		}
-    ],
+	],
     "data": {
         "syslogFileName": {
             "displayName": "File Name",
