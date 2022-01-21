@@ -4,7 +4,7 @@ This customization is intended to show you more information about the users sysl
 **This works in AWC 5.2 and has not yet been tested with newer versions. It should work in newer versions.**
 
 ## How it will look
-The button will be inside of the Settings menu, at the bottom (or near).
+The button will be inside of the Settings menu (Syslog Info).
 
 ![image](https://user-images.githubusercontent.com/12979360/150596962-e3c8f999-2c3d-4176-849e-2c9c9c4356d7.png)
 
