@@ -1,14 +1,14 @@
 {
-    "schemaVersion": "1.0.0",
-    "imports": [
-        "js/aw-panel-body.directive",
-        "js/aw-panel-footer.directive",
-        "js/aw-button.directive",
-        "js/aw-popup2.directive",
-        "js/aw-textarea.directive",
-        "js/aw-label.directive"
-    ],
-    "actions": {
+	"schemaVersion": "1.0.0",
+	"imports": [
+		"js/aw-panel-body.directive",
+		"js/aw-panel-footer.directive",
+		"js/aw-button.directive",
+		"js/aw-popup2.directive",
+		"js/aw-textarea.directive",
+		"js/aw-label.directive"
+	],
+	"actions": {
 		"closePopupWindow": {
 			"actionType": "JSFunction",
 			"method": "hide",
@@ -48,7 +48,7 @@
 				"syslogDataContent.dbValue": "out"
 			}
 		}
-    },
+	},
 	"onEvent": [
 		{
 			"eventId": "aw.closePopup",
@@ -59,64 +59,64 @@
 			"action": "loadSyslogFileContent"
 		}
 	],
-    "data": {
-        "syslogFileName": {
-            "displayName": "File Name",
-            "type": "STRING",
-            "isRequired": "false",
-            "isEditable": "false",
-            "dbValue": "",
-            "dispValue": "",
-            "uiValue": "loading..."
-        },
-        "serverSessionInfo": {
-            "displayName": "Session Info",
-            "type": "STRING",
-            "isRequired": "false",
-            "isEditable": "false",
-            "dbValue": "",
-            "dispValue": "",
-            "uiValue": "loading..."
-        },
-        "currentUsernameValue": {
-            "displayName": "User ID",
-            "type": "STRING",
-            "isRequired": "false",
-            "isEditable": "false",
-            "dbValue": "",
-            "dispValue": "",
-            "uiValue": "{{ctx.userSession.props.user_id.dbValue}}"
-        },
-        "currentGroupValue": {
-            "displayName": "Group",
-            "type": "STRING",
-            "isRequired": "false",
-            "isEditable": "false",
-            "dbValue": "",
-            "dispValue": "",
-            "uiValue": "{{ctx.userSession.props.group_name.dbValue}}"
-        },
-        "currentRoleValue": {
-            "displayName": "Role",
-            "type": "STRING",
-            "isRequired": "false",
-            "isEditable": "false",
-            "dbValue": "",
-            "dispValue": "",
-            "uiValue": "{{ctx.userSession.props.role_name.dbValue}}"
-        },
-        "syslogDataContent": {
-            "displayName": "Syslog Contents",
-            "type": "STRING",
-            "isRequired": "false",
-            "isEditable": "true",
-            "dispValue": "",
-            "dbValue": "",
-            "uiValue": "loading...",
-            "numberOfLines": 5
-        }
-    },
+	"data": {
+		"syslogFileName": {
+			"displayName": "File Name",
+			"type": "STRING",
+			"isRequired": "false",
+			"isEditable": "false",
+			"dbValue": "",
+			"dispValue": "",
+			"uiValue": "loading..."
+		},
+		"serverSessionInfo": {
+			"displayName": "Session Info",
+			"type": "STRING",
+			"isRequired": "false",
+			"isEditable": "false",
+			"dbValue": "",
+			"dispValue": "",
+			"uiValue": "loading..."
+		},
+		"currentUsernameValue": {
+			"displayName": "User ID",
+			"type": "STRING",
+			"isRequired": "false",
+			"isEditable": "false",
+			"dbValue": "",
+			"dispValue": "",
+			"uiValue": "{{ctx.userSession.props.user_id.dbValue}}"
+		},
+		"currentGroupValue": {
+			"displayName": "Group",
+			"type": "STRING",
+			"isRequired": "false",
+			"isEditable": "false",
+			"dbValue": "",
+			"dispValue": "",
+			"uiValue": "{{ctx.userSession.props.group_name.dbValue}}"
+		},
+		"currentRoleValue": {
+			"displayName": "Role",
+			"type": "STRING",
+			"isRequired": "false",
+			"isEditable": "false",
+			"dbValue": "",
+			"dispValue": "",
+			"uiValue": "{{ctx.userSession.props.role_name.dbValue}}"
+		},
+		"syslogDataContent": {
+			"displayName": "Syslog Contents",
+			"type": "STRING",
+			"isRequired": "false",
+			"isEditable": "true",
+			"dispValue": "",
+			"dbValue": "",
+			"uiValue": "loading...",
+			"numberOfLines": 5
+		}
+	},
 	"lifecycleHooks": {
-        "onInit": "getUserSessionDetail"
-    }
+		"onInit": "getUserSessionDetail"
+	}
 }
