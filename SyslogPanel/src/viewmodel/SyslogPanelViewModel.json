@@ -9,15 +9,15 @@
         "js/aw-label.directive"
     ],
     "actions": {
-        "closePopupWindow": {
-            "actionType": "JSFunction",
-            "method": "hide",
-            "inputData": {
-                "popupId": "{{data.popupId}}",
-                "targetEvent": "{{$event}}"
-            },
-            "deps": "js/popupService"
-        },
+		"closePopupWindow": {
+			"actionType": "JSFunction",
+			"method": "hide",
+			"inputData": {
+				"popupId": "{{data.popupId}}",
+				"targetEvent": "{{$event}}"
+			},
+			"deps": "js/popupService"
+		},
 		"getUserSessionDetail": {
 			"actionType": "TcSoaService",
 			"serviceName": "Core-2007-01-Session",
@@ -36,20 +36,20 @@
 				]
 			}
 		},
-        "loadSyslogFileContent": {
-            "actionType": "TcSoaService",
-            "serviceName": "Internal-DebugMonitor-2011-06-DebugLogging",
-            "method": "getSyslogFile",
-            "inputData":
-            {
-                "size": 1500000
-            },
-            "outputData": {
-                "syslogDataContent.dbValue": "out"
-            }
-        }
+		"loadSyslogFileContent": {
+			"actionType": "TcSoaService",
+			"serviceName": "Internal-DebugMonitor-2011-06-DebugLogging",
+			"method": "getSyslogFile",
+			"inputData":
+			{
+				"size": 1500000
+			},
+			"outputData": {
+				"syslogDataContent.dbValue": "out"
+			}
+		}
     },
-    "onEvent": [
+	"onEvent": [
 		{
 			"eventId": "aw.closePopup",
 			"action": "closePopupWindow"
