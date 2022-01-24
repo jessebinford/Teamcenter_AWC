@@ -1,108 +1,105 @@
 {
-    "schemaVersion": "1.0.0",
-    "imports": [
-		"js/aw-command-panel.directive",
-		"js/aw-panel-body.directive",
-		"js/aw-list.directive",
-		"js/aw-default-cell.directive",
-        "js/aw-button.directive",
-        "js/enable-when.directive",
-        "js/aw-label.directive",
-        "js/aw-break.directive"
-    ],
-    "actions": {
-        "getClipboardContents": {
-            "actionType": "JSFunctionAsync",
-            "method": "getCustomClipboardContent",
-            "inputData": {
-                "startIndex": "{{data.dataProviders.clipboardProvider.startIndex}}"
-            },
-            "outputData": {
-                "totalFound": "totalResults",
-                "searchResults": "searchResults"
-            },
-			"deps": "js/customClipboardService"
-        },
-		"performSplitViewOpen": {
-			"actionType": "Navigate",
-			"navigateTo": "com_siemens_splm_clientfx_tcui_xrt_showMultiObject",
-			"navigationParams": {
-				"uid": "{{data.dataProviders.clipboardProvider.selectedObjects[0].uid}}",
-				"uid2": "{{data.dataProviders.clipboardProvider.selectedObjects[1].uid}}",
-				"pci_uid": "",
-				"pci_uid2": ""
-			}
-		},
-		"clearClipboard": {
-            "actionType": "JSFunction",
-            "method": "clearCustomClipboard",
-            "inputData": {
-                "dataProvider": "{{data.dataProviders.clipboardProvider}}"
-            },
-			"deps": "js/customClipboardService"
-		},
-		"copyClipboardToNormalClipboard": {
-			"actionType": "Copy",
-			"method": "copyUrlToClipboard",
-			"inputData": {
-				"objectToCopy": "{{data.dataProviders.clipboardProvider.viewModelCollection.loadedVMObjects}}",
-				"copyType": "Object"
-			},
-			"actionMessages": {
-				"success": [
-					{
-					  "message": "copyAllSuccess"
-					}
-				]
-			}
-		}
-    },
-    "onEvent": [
-        {
-            "eventId": "CustomClipboardPanel.contentLoaded",
-            "action": "clipboardProvider"
-        }
-    ],
-    "conditions": {
-      "hasValidSelections": {
-        "expression": "data.dataProviders.clipboardProvider.selectedObjects.length === 2 && data.dataProviders.clipboardProvider.selectedObjects[0].modelType.typeHierarchyArray.includes('ItemRevision') && data.dataProviders.clipboardProvider.selectedObjects[1].modelType.typeHierarchyArray.includes('ItemRevision')"
+   "schemaVersion":"1.0.0",
+   "imports":[
+      "js/aw-command-panel.directive",
+      "js/aw-panel-body.directive",
+      "js/aw-list.directive",
+      "js/aw-default-cell.directive",
+      "js/aw-button.directive",
+      "js/enable-when.directive",
+      "js/aw-label.directive",
+      "js/aw-break.directive"
+   ],
+   "actions":{
+      "getClipboardContents":{
+         "actionType":"JSFunctionAsync",
+         "method":"getCustomClipboardContent",
+         "inputData":{
+            "startIndex":"{{data.dataProviders.clipboardProvider.startIndex}}"
+         },
+         "outputData":{
+            "totalFound":"totalResults",
+            "searchResults":"searchResults"
+         },
+         "deps":"js/customClipboardService"
       },
-      "hasClipboardObjects": {
-        "expression": "data.dataProviders.clipboardProvider.viewModelCollection.loadedVMObjects.length > 0"
+      "performSplitViewOpen":{
+         "actionType":"Navigate",
+         "navigateTo":"com_siemens_splm_clientfx_tcui_xrt_showMultiObject",
+         "navigationParams":{
+            "uid":"{{data.dataProviders.clipboardProvider.selectedObjects[0].uid}}",
+            "uid2":"{{data.dataProviders.clipboardProvider.selectedObjects[1].uid}}",
+            "pci_uid":"",
+            "pci_uid2":""
+         }
+      },
+      "clearClipboard":{
+         "actionType":"JSFunction",
+         "method":"clearCustomClipboard",
+         "inputData":{
+            "dataProvider":"{{data.dataProviders.clipboardProvider}}"
+         },
+         "deps":"js/customClipboardService"
+      },
+      "copyClipboardToNormalClipboard":{
+         "actionType":"Copy",
+         "method":"copyUrlToClipboard",
+         "inputData":{
+            "objectToCopy":"{{data.dataProviders.clipboardProvider.viewModelCollection.loadedVMObjects}}",
+            "copyType":"Object"
+         },
+         "actionMessages":{
+            "success":[
+               {
+                  "message":"copyAllSuccess"
+               }
+            ]
+         }
       }
-	},
-    "dataProviders": {
-        "clipboardProvider": {
-            "action": "getClipboardContents",
-            "response": "{{data.searchResults}}",
-            "totalFound": "{{data.totalFound}}",
-            "selectionModelMode": "multiple",
-            "commands": {
-                "Awp0ShowObjectCell": {
-                    "id": "cmdOpen",
-                    "title": "Open",
-                    "areas": [
-                        "com.siemens.splm.clientfx.ui.modelObjectListActionCommands"
-                    ],
-
-                    "priorities": [
-                        300
-                    ],
-
-                    "dependencies": [
-                        "js/showObjectCommandHandler"
-                    ],
-
-                    "displayOption": "ON_HOVER_AND_SELECTION",
-                    "position": "TOP_RIGHT"
-                }
+   },
+   "onEvent":[
+      {
+         "eventId":"CustomClipboardPanel.contentLoaded",
+         "action":"clipboardProvider"
+      }
+   ],
+   "conditions":{
+      "hasValidSelections":{
+         "expression":"data.dataProviders.clipboardProvider.selectedObjects.length === 2 && data.dataProviders.clipboardProvider.selectedObjects[0].modelType.typeHierarchyArray.includes('ItemRevision') && data.dataProviders.clipboardProvider.selectedObjects[1].modelType.typeHierarchyArray.includes('ItemRevision')"
+      },
+      "hasClipboardObjects":{
+         "expression":"data.dataProviders.clipboardProvider.viewModelCollection.loadedVMObjects.length > 0"
+      }
+   },
+   "dataProviders":{
+      "clipboardProvider":{
+         "action":"getClipboardContents",
+         "response":"{{data.searchResults}}",
+         "totalFound":"{{data.totalFound}}",
+         "selectionModelMode":"multiple",
+         "commands":{
+            "Awp0ShowObjectCell":{
+               "id":"cmdOpen",
+               "title":"Open",
+               "areas":[
+                  "com.siemens.splm.clientfx.ui.modelObjectListActionCommands"
+               ],
+               "priorities":[
+                  300
+               ],
+               "dependencies":[
+                  "js/showObjectCommandHandler"
+               ],
+               "displayOption":"ON_HOVER_AND_SELECTION",
+               "position":"TOP_RIGHT"
             }
-        }
-    },
-    "messages": {
-        "copyAllSuccess": {
-            "messageType": "INFO",
-            "messageText": "Copied all objects to normal clipboard!"
-        }
-    }
+         }
+      }
+   },
+   "messages":{
+      "copyAllSuccess":{
+         "messageType":"INFO",
+         "messageText":"Copied all objects to normal clipboard!"
+      }
+   }
 }
