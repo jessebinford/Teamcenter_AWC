@@ -1,21 +1,41 @@
+# What is the main purpose of this new clipboard?
+This clipboard will provide you a way to keep appending objects to a clipboard you can easily access. Each individual copy will add the object(s) to your normal TC clipboard as well as the new custom clipboard. 
+
+**The copy will not append to your normal TC clipboard, it functions like normal where it is overridden. However, you can still get everything into one copy by opening this new clipboard at any time and clicking the button 'Copy All To TC Clipboard' and then pasting it as desired.**
+
 # Custom Clipboard and Panel
-This customization is intended to show you how to add a custom clipboard. This customization will add a right-click menu item to tables to perform a copy to the new clipboard. The clipboard panel will be accessible via the far left global menu.
+This customization is intended to show you how to add a custom clipboard. This customization will do two things:
+1. Add a copy to clipboard right-click menu option
+   - Called *Custom Clipboard Copy*
+3. Provide you a panel to view your clipboard and perform actions.
 
 This clipboard has the following functions:
- - There will be a Right-Click menu option to copy objects into the clipboard (Found in table/lists)
+ - Copy to clipboard is only in the right-click menu
  - Copied objects are appended to the top of the custom clipboard
  - Clipboard holds a maximum of 15 objects
- - From the clipboard panel
-  - You can select one or more objects and send them to the normal TC clipboard at once
-  - You can select two revision objects and open them into a split view easily
-  - You can clear your clipboard
+ - Custom Clipboard Panel
+   - You can copy all clipboard objects to your normal TC clipboard with one click
+     - This will override your current TC clipboard with all the objects in your custom clipboard
+   - You can select two revision objects and open them into a split view easily
+     - Can be useful if you want to do a split view to compare BOM's of two revisions but dont have the objects in one location for dual selection
+   - You can clear your clipboard
 
 This clipboard is stored in the cookie, which means it will be reset if the cookies are deleted.
 
 **This works in AWC 5.2 and has not yet been tested with newer versions. It should work in newer versions.**
 
 ## How it will look
+Example of Right-Click menu:
 
+![image](https://user-images.githubusercontent.com/12979360/150722599-f4d4a67a-7fae-48ee-b80c-4d6366efda94.png)
+
+Example of Panel Button:
+
+![image](https://user-images.githubusercontent.com/12979360/150722613-7559381d-4261-4a32-9ab9-7e9afb9a18e6.png)
+
+Example of Panel Open:
+
+![image](https://user-images.githubusercontent.com/12979360/150722623-c994d1be-a5ba-4a52-a76f-187ed1dfac46.png)
 
 
 ## Setting it up
