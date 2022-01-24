@@ -1,0 +1,87 @@
+{
+    "commands": {
+        "ShowCustomClipboardPanelCommand": {
+            "iconId": "cmdClipboard",
+            "title": "Custom Clipboard"
+        },
+        "CustomCopyCommand": {
+            "iconId": "cmdCopy",
+            "title": "Custom Clipboard Copy"
+        }
+    },
+    "commandHandlers": {
+        "ShowCustomClipboardPanelHandler": {
+            "id": "ShowCustomClipboardPanelCommand",
+            "action": "showCustomClipboardPanel",
+            "activeWhen": true,
+            "visibleWhen": {
+                "condition": "conditions.true"
+            }
+        },
+        "customCopyHandler": {
+            "id": "CustomCopyCommand",
+            "action": "performCustomClipboardCopy",
+            "activeWhen": true,
+            "visibleWhen": true
+        }
+    },
+    "commandPlacements": {
+        "ShowCustomClipboardPanelPlacement": {
+            "id": "ShowCustomClipboardPanelCommand",
+            "uiAnchor": "aw_globalNavigationbar",
+            "priority": 125
+        },
+        "customCopyCommandPlacement": {
+            "id": "CustomCopyCommand",
+            "uiAnchor": "aw_contextMenu2",
+            "priority": 1
+        }
+    },
+    "actions": {
+		"performCustomClipboardCopy": {
+			"actionType": "JSFunction",
+			"method": "customCopyToClipboard",
+            "events": {
+				"success": [{
+				  "name": "startNormalCopyObj"
+				}]
+            },
+			"deps": "js/customClipboardService"
+		},
+		"performNormalTCCopyObject": {
+			"actionType": "Copy",
+			"method": "copyUrlToClipboard",
+			"inputData": {
+				"objectToCopy": "{{ctx.mselected}}",
+				"copyType": "Object"
+			},
+			"actionMessages": {
+				"success": [
+					{
+					  "condition": "(ctx.mselected && ctx.mselected.length === 1)",
+					  "message": "copySingleSuccessful"
+					},
+					{
+					  "condition": "(ctx.mselected && ctx.mselected.length > 1)",
+					  "message": "copyMultipleSuccessful"
+					}
+				]
+			}
+		},
+		"showCustomClipboardPanel": {
+			"actionType": "JSFunction",
+			"method": "activateCommandPanel",
+			"deps": "js/commandPanel.service",
+			"inputData": {
+				"commandId": "CustomClipboardPanel",
+				"location" : "aw_navigation"
+			}
+		}
+    },
+    "onEvent": [
+        {
+            "eventId": "startNormalCopyObj",
+            "action": "performNormalTCCopyObject"
+        }
+	]
+}

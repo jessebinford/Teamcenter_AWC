@@ -1,0 +1,14 @@
+<aw-command-panel caption="RL Clipboard">
+	<aw-panel-body>
+		<aw-label>Select two objects to open them in split view.</aw-label>
+		<aw-break></aw-break>
+		<aw-list dataprovider="data.dataProviders.clipboardProvider">
+			<aw-default-cell vmo="item"></aw-default-cell>
+		</aw-list>
+	</aw-panel-body>
+    <aw-panel-footer>
+        <aw-button enable-when="conditions.hasValidSelections" action="performSplitViewOpen">Open Selected Split View</aw-button>
+        <aw-button enable-when="conditions.hasClipboardObjects" action="copyClipboardToNormalClipboard">Copy All To TC Clipboard</aw-button>
+		<aw-button enable-when="conditions.hasClipboardObjects" action="clearClipboard">Clear Clipboard</aw-button>
+    </aw-panel-footer>
+</aw-command-panel>
