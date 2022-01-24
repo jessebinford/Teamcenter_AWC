@@ -60,3 +60,15 @@ Example:
 > 
 > Repo content: src\js\customClipboardService.js<br/>
 > Should go into:  aws2\stage\src\YOURMODULEFOLDER\src\js
+
+#### Custom Clipboard Icon
+You will need to add an icon for your new clipboard.
+
+Add the clipboard icon you wish to use to your icons folder:
+> aws2\stage\src\image
+
+Icon file example name: cmdClipboard24.svg
+
+Replace the iconId value in the commandsViewModel.json file:
+
+![image](https://user-images.githubusercontent.com/12979360/150723873-48d19203-00b9-4c26-a184-4318d55cca0a.png)
