@@ -12,12 +12,15 @@ Edit the file:
 Locate the location of the password field:
 ````
     <li><input type="password" class="gwt-PasswordTextBox" placeholder={{passwordPlaceHolder}}
-        aria-label={{passwordPlaceHolder}} autocomplete="off" autocapitalize="off"
-        ng-model="password" aw-enter='login()'></li>
+            aria-label={{passwordPlaceHolder}} autocomplete="off" autocapitalize="off"
+            ng-model="password" aw-enter='login()'></li>
 ````
 
-Now add our new fields:
+Now add our new fields directly after:
 ````
+    <li><input type="password" class="gwt-PasswordTextBox" placeholder={{passwordPlaceHolder}}
+            aria-label={{passwordPlaceHolder}} autocomplete="off" autocapitalize="off"
+            ng-model="password" aw-enter='login()'></li>
     <li><input type="text" class="gwt-TextBox" placeholder="Group"
             aria-label="Group" name="group" autocomplete="off"
             autocapitalize="off" ng-model="group"></li>
@@ -26,7 +29,7 @@ Now add our new fields:
             autocapitalize="off" ng-model="role"></li>
 ````
 
-Build and you should be good to go.
+Save the HTML file, then build and you should be good to go.
 
 
 ## IMPORTANT NOTE
