@@ -1,0 +1,74 @@
+<form class="signin-form aw-layout-mainView" name="myForm">
+    <div class="aw-session-loginViewPanel" ng-class="{error: myForm.name.$invalid}">
+        <div class="aw-session-tcLoginView">
+            <div class="aw-session-companyLogoParent">
+                <div class="aw-session-companyLogo"></div>
+            </div>
+            <div class="aw-session-signInParent">
+                <div class="aw-session-signIn">
+                    <div class="aw-session-brandPanel">
+                        <h1 class="aw-session-brandName">{{brandName}}</h1>
+                        <h2 class="aw-session-productName">{{productName}}</h2>
+                        <h3 class="aw-session-companyName">{{companyName}}</h3>
+                    </div>
+                    <ul>
+                        <li><input type="text" class="gwt-TextBox" placeholder={{userNamePlaceHolder}}
+                                aria-label={{userNamePlaceHolder}} name="userName" autocomplete="off"
+                                autocapitalize="off" ng-model="userName" required autofocus></li>
+                        <li><input type="password" class="gwt-PasswordTextBox" placeholder={{passwordPlaceHolder}}
+                                aria-label={{passwordPlaceHolder}} autocomplete="off" autocapitalize="off"
+                                ng-model="password" aw-enter='login()'></li>
+                        <li><input type="text" class="gwt-TextBox" placeholder="Group"
+                                aria-label="Group" name="group" autocomplete="off"
+                                autocapitalize="off" ng-model="group"></li>
+                        <li><input type="text" class="gwt-TextBox" placeholder="Role"
+                                aria-label="Role" name="role" autocomplete="off"
+                                autocapitalize="off" ng-model="role"></li>
+                        <li>
+                            <div class="aw-session-signInContainer">
+                                <div class="aw-session-signInButton">
+                                    <button class="aw-base-button" ng-click="login()"
+                                        ng-disabled="myForm.$invalid">{{signInText}}</button>
+                                    <div class="aw-session-progress" ng-show="networkActive"></div>
+                                </div>
+                                <div class="aw-session-locale aw-layout-flexColumnContainer">
+                                    <div class="aw-base-normal">
+                                        <a ng-click="showInstalledLanguagePopup($event)" id="aw-login-locale"
+                                            class="ng-binding aw-aria-border" tabindex="0">{{defaultLanguage.uiValue}}
+                                        </a>
+                                    </div>
+                                    <div style="height: 5px;"></div>
+                                    <div ng-if="showpopup">
+                                        <div class="aw-layout-popup aw-layout-popupOverlay popupContent">
+                                            <div class="aw-base-scrollPanel" ng-style="{{ popupStyle }}">
+                                                <div class="aw-widgets-cellListWidget">
+                                                    <ul class="aw-layout-linkWithPopupContainer">
+                                                        <!-- ngRepeat: item in items -->
+                                                        <li class="aw-widgets-cellListItem aw-widgets-cellTop ng-binding"
+                                                            ng-class="{'aw-widgets-cellListItemSelected': item.isSelected}"
+                                                            ng-repeat="item in installedLanguages"
+                                                            ng-mousedown="setSelectedLanguage( item )"> {{item.uiValue}}
+                                                        </li>
+                                                        <!-- end ngRepeat: item in items -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="aw-session-progressContainer">
+                                <div class="aw-session-errorMessage">{{errorText}}</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="copyright normal">{{copyright}}</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
