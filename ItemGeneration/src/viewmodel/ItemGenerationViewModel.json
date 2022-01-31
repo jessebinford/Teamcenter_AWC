@@ -1,0 +1,115 @@
+{
+    "schemaVersion": "1.0.0",
+    "imports": [
+        "js/aw-button.directive"
+    ],
+    "actions": {
+		"generateNewItemObjAndAttach": {
+			"actionType": "batchJob",
+			"steps": [
+			  {
+				"action": "getCurrentObject"
+			  },
+			  {
+				"action": "generateNewItemIdValues"
+			  },
+			  {
+				"action": "generateNewItemObject"
+			  },
+			  {
+				"action": "addNewItemRevisionsAsAttachment"
+			  }
+			]
+		},
+        "getCurrentObject": {
+			"actionType": "JSFunction",
+			"method": "getPrimarySelectedObject",
+			"inputData": {
+			  "context": "{{ctx}}"
+			},
+            "outputData": {
+                "primarySelectedObject": "selectedObject"
+            },
+			"deps": "js/itemGenerationService"
+		},
+        "generateNewItemIdValues": {
+            "actionType": "TcSoaService",
+            "serviceName": "Core-2013-05-DataManagement",
+            "method": "generateNextValues",
+			"inputData": {
+			  "generateNextValuesIn": "{{function:formatItemIdGenerationInput}}"
+			},
+			"outputData": {
+			  "generatedIdValues": "generatedValues"
+			},
+			"deps": "js/itemGenerationService"
+        },
+        "generateNewItemObject": {
+            "actionType": "TcSoaService",
+            "serviceName": "Internal-Core-2012-10-DataManagement",
+            "method": "createRelateAndSubmitObjects",
+			"inputData": {
+			  "inputs": "{{function:formatItemCreationInput}}"
+			},
+			"outputData": {
+			  "newGenerationResults": "{{function:parseCreatedObjectsForRevisions}}"
+			},
+            "actionMessages": {
+                "failure": [ {
+                        "message": "ItemGenerationError"
+                    }
+                ]
+            },
+			"deps": "js/itemGenerationService"
+        },
+        "addNewItemRevisionsAsAttachment": {
+            "actionType": "JSFunctionAsync",
+            "method": "execute",
+            "inputData": {
+                "targetObject": "{{data.primarySelectedObject}}",
+                "sourceObjects": "{{data.newGenerationResults}}",
+                "relationType": "IMAN_specification"
+            },
+            "outputData": {},
+            "actionMessages": {
+                "success": [ {
+                        "message": "ItemGenerationFinished"
+                    }
+                ],
+                "failure": [ {
+                        "message": "ItemPasteError"
+                    }
+                ]
+            },
+            "deps": "js/pasteService"
+        }
+    },
+    "functions": {
+      "formatItemIdGenerationInput": {
+        "functionName": "formatItemIdGenerationInput",
+        "parameters": [
+          "{{data}}"
+        ]
+      },
+      "formatItemCreationInput": {
+        "functionName": "formatItemCreationInput",
+        "parameters": [
+          "{{data}}"
+        ]
+      }
+    },
+    "messages": {
+        "ItemGenerationError": {
+            "messageType": "ERROR",
+            "messageText": "Error creating item objects."
+        },
+        "ItemPasteError": {
+            "messageType": "ERROR",
+            "messageText": "Error pasting COTS items to request revision."
+        },
+        "ItemGenerationFinished": {
+            "messageType": "INFO",
+            "messageText": "New object created and attached!"
+        }
+    }
+}
